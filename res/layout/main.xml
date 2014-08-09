@@ -3,10 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    
+    <EditText 
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.5"/>
 
     <TextView
+        android:id="@+id/result"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:text="asd"/>
+        android:layout_height="wrap_content"
+        android:text="asd" />
+
+    <Button
+        android:id="@+id/ok_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Find currency" />
 
 </LinearLayout>
