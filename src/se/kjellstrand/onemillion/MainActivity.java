@@ -13,7 +13,6 @@ import java.util.Map.Entry;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -39,7 +38,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
 
     private Map<String, String> reverseMapCurrencies = new HashMap<String, String>();
 
-    private String baseCurrency = "United States Dollar";
+    private String baseCurrency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +54,6 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
 
         // Spinner element
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-
-        // baseCurrency = spinnerList.get(spinner.getSelectedItemPosition());
 
         // Spinner click listener
         spinner.setOnItemSelectedListener(this);
@@ -85,7 +82,17 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
                 if (amountString != null && amountString.length() > 0) {
                     float amount = Float.parseFloat(amountString);
 
+                    // Save the current amount
+                    Settings.setAmount(MainActivity.this, amount);
+
+                    // Save the current amount to prefs
+                    Settings.setBaseCurrency(MainActivity.this, baseCurrency);
+
                     String cur = currencies.get(getBestMatchingCurrency(amount, baseCurrency));
+
+                    // TODO check distance and display sorry your not a
+                    // millionarie if to big/low
+
                     String resultFormat = getResources().getString(R.string.result_text);
                     String text = String.format(resultFormat, amount, baseCurrency, cur);
 
@@ -94,6 +101,13 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
             }
         });
 
+        ((EditText) findViewById(R.id.amount)).setText(Float.toString(Settings.getAmount(this)));
+
+        baseCurrency = Settings.getBaseCurrency(this);
+        if (baseCurrency == null) {
+            baseCurrency = "United States Dollar";
+        }
+
         // Select the default currency
         spinner.setSelection(currencyList.lastIndexOf(baseCurrency));
     }
@@ -101,6 +115,9 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
         baseCurrency = currencyList.get(spinner.getSelectedItemPosition());
+
+        // Save the current amount to prefs
+        Settings.setBaseCurrency(MainActivity.this, baseCurrency);
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
@@ -114,7 +131,6 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
             if (getDistanceToOneMillion(exchangeRates.rates.get(bestMatchCurrency), amount, baseRate) > getDistanceToOneMillion(
                     entry.getValue(), amount, baseRate)) {
                 bestMatchCurrency = entry.getKey();
-                Log.d("TAG", "----------------------");
             }
         }
 
@@ -123,7 +139,6 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
 
     private float getDistanceToOneMillion(Float rate, float amount, float baseRate) {
         float distance = Math.abs((rate * amount / baseRate) - ONE_MILLION);
-        Log.d("TAG", "dist: " + distance + " rate " + rate + " amount " + amount + " base " + baseRate);
         return distance;
     }
 
