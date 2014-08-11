@@ -7,25 +7,30 @@
     android:padding="16dp"
     tools:context=".MainActivity" >
 
-    <EditText
-        android:id="@+id/amount"
+    <TextView
+        android:id="@+id/i_have"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/spinner"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_below="@+id/ok_button"
+        android:padding="8dp"
+        android:text="@string/i_have_"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/i_have"
+        android:ems="10"
         android:inputType="numberDecimal"
         android:padding="8dp"
-        android:text="1000" />
+        android:text="1000" >
 
-    <Button
-        android:id="@+id/ok_button"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/spinner"
-        android:padding="8dp"
-        android:text="@string/am_i_a_millionare_" />
+        <requestFocus />
+    </EditText>
 
     <Spinner
         android:id="@+id/spinner"
@@ -35,6 +40,14 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/amount"
         android:padding="8dp" />
+
+    <Button
+        android:id="@+id/ok_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/amount"
+        android:padding="8dp"
+        android:text="@string/am_i_a_millionare_" />
 
     <TextView
         android:id="@+id/result"
