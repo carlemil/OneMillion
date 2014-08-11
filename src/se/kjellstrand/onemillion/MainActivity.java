@@ -88,13 +88,16 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
                     // Save the current amount to prefs
                     Settings.setBaseCurrency(MainActivity.this, baseCurrency);
 
-                    String cur = currencies.get(getBestMatchingCurrency(amount, baseCurrency));
-
-                    // TODO check distance and display sorry your not a
-                    // Millionaire if to big/low
-
-                    String resultFormat = getResources().getString(R.string.result_text);
-                    String text = String.format(resultFormat, amount, baseCurrency, cur);
+                    String text;
+                    String bestMatch = currencies.get(getBestMatchingCurrency(amount, baseCurrency));
+                    // Check distance and display sorry your not a Millionaire
+                    // if null
+                    if (bestMatch != null) {
+                        String resultFormat = getResources().getString(R.string.result_text);
+                        text = String.format(resultFormat, amount, baseCurrency, bestMatch);
+                    } else {
+                        text = getResources().getString(R.string.result_not_a_millionare);
+                    }
 
                     ((TextView) findViewById(R.id.result)).setText(text);
                 }
@@ -125,11 +128,13 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
     }
 
     private String getBestMatchingCurrency(float amount, String base) {
-        String bestMatchCurrency = "USD";
+        String bestMatchCurrency = null;
         float baseRate = exchangeRates.rates.get(reverseMapCurrencies.get(base));
+        float bestAmount = Float.MAX_VALUE;
         for (Entry<String, Float> entry : exchangeRates.rates.entrySet()) {
-            if (getDistanceToOneMillion(exchangeRates.rates.get(bestMatchCurrency), amount, baseRate) > getDistanceToOneMillion(
-                    entry.getValue(), amount, baseRate)) {
+            float currentAmount = getAmount(entry.getValue(), amount, baseRate);
+            if (currentAmount < bestAmount && currentAmount > ONE_MILLION) {
+                bestAmount = currentAmount;
                 bestMatchCurrency = entry.getKey();
             }
         }
@@ -137,8 +142,8 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
         return bestMatchCurrency;
     }
 
-    private float getDistanceToOneMillion(Float rate, float amount, float baseRate) {
-        float distance = Math.abs((rate * amount / baseRate) - ONE_MILLION);
+    private float getAmount(float rate, float amount, float baseRate) {
+        float distance = (rate * amount / baseRate);
         return distance;
     }
 
