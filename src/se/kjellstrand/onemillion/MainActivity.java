@@ -91,7 +91,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
                     String cur = currencies.get(getBestMatchingCurrency(amount, baseCurrency));
 
                     // TODO check distance and display sorry your not a
-                    // millionarie if to big/low
+                    // Millionaire if to big/low
 
                     String resultFormat = getResources().getString(R.string.result_text);
                     String text = String.format(resultFormat, amount, baseCurrency, cur);
