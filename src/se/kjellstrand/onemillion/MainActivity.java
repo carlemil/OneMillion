@@ -52,6 +52,11 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
         json = readFile(R.raw.currencies);
         currencies = gson.fromJson(json, currencies.getClass());
 
+        baseCurrency = Settings.getBaseCurrency(this);
+        if (baseCurrency == null) {
+            baseCurrency = "United States Dollar";
+        }
+
         // Spinner element
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
 
@@ -89,12 +94,16 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
                     Settings.setBaseCurrency(MainActivity.this, baseCurrency);
 
                     String text;
-                    String bestMatch = currencies.get(getBestMatchingCurrency(amount, baseCurrency));
+                    String bestMatchingCurrencyKey = getBestMatchingCurrency(amount, baseCurrency);
+                    String bestMatchingCurrency = currencies.get(bestMatchingCurrencyKey);
                     // Check distance and display sorry your not a Millionaire
                     // if null
-                    if (bestMatch != null) {
+                    if (bestMatchingCurrency != null) {
                         String resultFormat = getResources().getString(R.string.result_text);
-                        text = String.format(resultFormat, amount, baseCurrency, bestMatch);
+                        float baseRate = exchangeRates.rates.get(reverseMapCurrencies.get(baseCurrency));
+                        float bestRate = exchangeRates.rates.get(bestMatchingCurrencyKey);
+                        int sum = (int) getAmount(bestRate, amount, baseRate);
+                        text = String.format(resultFormat, sum, bestMatchingCurrency);
                     } else {
                         text = getResources().getString(R.string.result_not_a_millionare);
                     }
@@ -105,11 +114,6 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
         });
 
         ((EditText) findViewById(R.id.amount)).setText(Float.toString(Settings.getAmount(this)));
-
-        baseCurrency = Settings.getBaseCurrency(this);
-        if (baseCurrency == null) {
-            baseCurrency = "United States Dollar";
-        }
 
         // Select the default currency
         spinner.setSelection(currencyList.lastIndexOf(baseCurrency));
