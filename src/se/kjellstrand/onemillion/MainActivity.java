@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -124,6 +125,8 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
 
         // Select the default currency
         spinner.setSelection(currencyList.lastIndexOf(baseCurrency));
+
+        setupShareButtons();
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
@@ -171,4 +174,20 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
         }
         return total.toString();
     }
+
+    private void setupShareButtons() {
+        findViewById(R.id.share).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, ((TextView) findViewById(R.id.result)).getText());
+                sendIntent.setType("text/html");
+                startActivity(sendIntent);
+            }
+        });
+
+    }
+
 }

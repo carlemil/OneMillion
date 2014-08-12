@@ -1,9 +1,10 @@
 <resources>
 
-    <string name="app_name">OneMillion</string>
-    <string name="result_text">You are a MILLIONAIRE!\n\nYou have\n%1$s\n%2$s!</string>
-    <string name="result_not_a_millionare">Sorry, you are not a MILLIONAIRE.</string>
-    <string name="am_i_a_millionare_">Am I a MILLIONAIRE?</string>
-    <string name="i_have_">I have:</string>
+    <string name="app_name">Am I a millionaire?</string>
+    <string name="find_out">Find out!</string>
+    <string name="result_text"><a href="http://source.android.com/">I\'m a MILLIONAIRE!</a>\nI have %1$s %2$s!</string>
+    <string name="result_not_a_millionare">:) I\'m not a millionaire.</string>
+    <string name="i_have_">I have </string>
+    <string name="share_text">share</string>
 
 </resources>
