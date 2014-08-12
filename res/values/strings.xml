@@ -1,9 +1,9 @@
 <resources>
 
     <string name="app_name">OneMillion</string>
-    <string name="result_text">You are a MILLIONAIRE, you have %1$d %2$s!</string>
-    <string name="result_not_a_millionare">Sorry, you are not a millionarie in any currency.</string>
-    <string name="am_i_a_millionare_">Am I a millionare?</string>
+    <string name="result_text">You are a MILLIONAIRE!\n\nYou have\n%1$s\n%2$s!</string>
+    <string name="result_not_a_millionare">Sorry, you are not a MILLIONAIRE.</string>
+    <string name="am_i_a_millionare_">Am I a MILLIONAIRE?</string>
     <string name="i_have_">I have:</string>
 
 </resources>

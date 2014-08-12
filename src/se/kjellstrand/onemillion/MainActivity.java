@@ -4,6 +4,7 @@ package se.kjellstrand.onemillion;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -103,7 +104,8 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
                         float baseRate = exchangeRates.rates.get(reverseMapCurrencies.get(baseCurrency));
                         float bestRate = exchangeRates.rates.get(bestMatchingCurrencyKey);
                         int sum = (int) getAmount(bestRate, amount, baseRate);
-                        text = String.format(resultFormat, sum, bestMatchingCurrency);
+                        DecimalFormat formatter = new DecimalFormat("#,###");
+                        text = String.format(resultFormat, formatter.format(sum), bestMatchingCurrency);
                     } else {
                         text = getResources().getString(R.string.result_not_a_millionare);
                     }

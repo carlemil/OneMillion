@@ -42,7 +42,7 @@ public final class Settings {
     }
 
     public static float getAmount(Context context) {
-        return loadSharedPreferences(context).getFloat(PREFS_AMOUNT, 1000f);
+        return loadSharedPreferences(context).getFloat(PREFS_AMOUNT, 0f);
     }
 
     public static void reset(Context context) {
