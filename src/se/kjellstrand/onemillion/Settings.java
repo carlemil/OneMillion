@@ -16,8 +16,7 @@ public final class Settings {
     private static final String PREFS_AMOUNT = "amount";
 
     private static SharedPreferences.Editor openSharedPreferencesForEditing(Context context) {
-        SharedPreferences prefs = context.getSharedPreferences(PREFERENCES_FILE,
-                Context.MODE_PRIVATE);
+        SharedPreferences prefs = context.getSharedPreferences(PREFERENCES_FILE, Context.MODE_PRIVATE);
         return prefs.edit();
     }
 
@@ -35,14 +34,14 @@ public final class Settings {
         return loadSharedPreferences(context).getString(PREFS_BASECUR, null);
     }
 
-    public static void setAmount(Context context, float amount) {
+    public static void setAmount(Context context, long amount) {
         SharedPreferences.Editor editor = openSharedPreferencesForEditing(context);
-        editor.putFloat(PREFS_AMOUNT, amount);
+        editor.putLong(PREFS_AMOUNT, amount);
         editor.apply();
     }
 
-    public static float getAmount(Context context) {
-        return loadSharedPreferences(context).getFloat(PREFS_AMOUNT, 0f);
+    public static long getAmount(Context context) {
+        return loadSharedPreferences(context).getLong(PREFS_AMOUNT, 0);
     }
 
     public static void reset(Context context) {
@@ -51,8 +50,7 @@ public final class Settings {
             editor.clear();
             editor.apply();
         } else {
-            Log.e(LOG_TAG,
-                    "Reset: context == null.");
+            Log.e(LOG_TAG, "Reset: context == null.");
         }
     }
 

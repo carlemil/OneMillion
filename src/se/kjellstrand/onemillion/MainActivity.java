@@ -27,7 +27,7 @@ import com.google.gson.Gson;
 
 public class MainActivity extends Activity implements OnItemSelectedListener {
 
-    private static final float ONE_MILLION = 1000000f;
+    private static final double ONE_MILLION = 1000000f;
 
     private Gson gson = new Gson();
 
@@ -86,7 +86,12 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
                 String amountString = ((EditText) findViewById(R.id.amount)).getText().toString();
 
                 if (amountString != null && amountString.length() > 0) {
-                    float amount = Float.parseFloat(amountString);
+                    long amount = Long.MAX_VALUE;
+                    try {
+                        amount = Long.parseLong(amountString);
+                    } catch (Exception e) {
+
+                    }
 
                     // Save the current amount
                     Settings.setAmount(MainActivity.this, amount);
@@ -101,9 +106,9 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
                     // if null
                     if (bestMatchingCurrency != null) {
                         String resultFormat = getResources().getString(R.string.result_text);
-                        float baseRate = exchangeRates.rates.get(reverseMapCurrencies.get(baseCurrency));
-                        float bestRate = exchangeRates.rates.get(bestMatchingCurrencyKey);
-                        int sum = (int) getAmount(bestRate, amount, baseRate);
+                        double baseRate = exchangeRates.rates.get(reverseMapCurrencies.get(baseCurrency));
+                        double bestRate = exchangeRates.rates.get(bestMatchingCurrencyKey);
+                        long sum = (long) getAmount(bestRate, amount, baseRate);
                         DecimalFormat formatter = new DecimalFormat("#,###");
                         text = String.format(resultFormat, formatter.format(sum), bestMatchingCurrency);
                     } else {
@@ -115,7 +120,7 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
             }
         });
 
-        ((EditText) findViewById(R.id.amount)).setText(Float.toString(Settings.getAmount(this)));
+        ((EditText) findViewById(R.id.amount)).setText(Long.toString(Settings.getAmount(this)));
 
         // Select the default currency
         spinner.setSelection(currencyList.lastIndexOf(baseCurrency));
@@ -133,12 +138,12 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
         // Another interface callback
     }
 
-    private String getBestMatchingCurrency(float amount, String base) {
+    private String getBestMatchingCurrency(double amount, String base) {
         String bestMatchCurrency = null;
-        float baseRate = exchangeRates.rates.get(reverseMapCurrencies.get(base));
-        float bestAmount = Float.MAX_VALUE;
-        for (Entry<String, Float> entry : exchangeRates.rates.entrySet()) {
-            float currentAmount = getAmount(entry.getValue(), amount, baseRate);
+        double baseRate = exchangeRates.rates.get(reverseMapCurrencies.get(base));
+        double bestAmount = Double.MAX_VALUE;
+        for (Entry<String, Double> entry : exchangeRates.rates.entrySet()) {
+            double currentAmount = getAmount(entry.getValue(), amount, baseRate);
             if (currentAmount < bestAmount && currentAmount > ONE_MILLION) {
                 bestAmount = currentAmount;
                 bestMatchCurrency = entry.getKey();
@@ -148,8 +153,8 @@ public class MainActivity extends Activity implements OnItemSelectedListener {
         return bestMatchCurrency;
     }
 
-    private float getAmount(float rate, float amount, float baseRate) {
-        float distance = (rate * amount / baseRate);
+    private double getAmount(double bestRate, double amount, double baseRate) {
+        double distance = (bestRate * amount / baseRate);
         return distance;
     }
 

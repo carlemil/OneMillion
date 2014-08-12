@@ -29,7 +29,7 @@
             android:layout_toLeftOf="@+id/spinner"
             android:layout_toRightOf="@+id/i_have"
             android:ems="10"
-            android:inputType="numberDecimal"
+            android:inputType="number"
             android:minWidth="60dp"
             android:padding="8dp"
             android:text="0" >
