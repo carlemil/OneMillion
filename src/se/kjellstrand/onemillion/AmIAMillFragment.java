@@ -12,13 +12,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.facebook.Session;
-import com.facebook.SessionState;
-import com.facebook.widget.FacebookDialog;
 import com.google.gson.Gson;
 
 import android.support.v4.app.Fragment;
-import android.content.Intent;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +26,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class AmIAMillFragment extends Fragment {
@@ -50,7 +46,6 @@ public class AmIAMillFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.amiamill, container, false);
     }
@@ -58,7 +53,6 @@ public class AmIAMillFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
 
         String json = readFile(R.raw.exchange_rates);
         exchangeRates = gson.fromJson(json, ExchangeRates.class);
@@ -125,7 +119,7 @@ public class AmIAMillFragment extends Fragment {
                     // Save the current amount to prefs
                     Settings.setBaseCurrency(getActivity(), baseCurrency);
 
-                    String text;
+                    String resultText;
                     String bestMatchingCurrencyKey = getBestMatchingCurrency(amount, baseCurrency);
                     String bestMatchingCurrency = currencies.get(bestMatchingCurrencyKey);
                     // Check distance and display sorry your not a Millionaire
@@ -137,23 +131,36 @@ public class AmIAMillFragment extends Fragment {
                         long sum = (long) getAmount(bestRate, amount, baseRate);
                         DecimalFormat formatter = new DecimalFormat("#,###");
                         String imAMillionare = getResources().getString(R.string.result_im_a_millionare);
-                        text = imAMillionare + String.format(resultFormat, formatter.format(sum), bestMatchingCurrency);
+                        resultText = imAMillionare + "\n" + String.format(resultFormat, formatter.format(sum), bestMatchingCurrency);
                     } else {
-                        text = getResources().getString(R.string.result_not_a_millionare);
+                        resultText = getResources().getString(R.string.result_not_a_millionare);
                     }
 
-                    ((TextView) getActivity().findViewById(R.id.result)).setText(text);
+                    showResultFragment(resultText);
                 }
             }
+
         });
 
         ((EditText) getActivity().findViewById(R.id.amount)).setText(Long.toString(Settings.getAmount(getActivity())));
 
         // Select the default currency
         spinner.setSelection(currencyList.lastIndexOf(baseCurrency));
+    }
 
-        setupShare();
+    private void showResultFragment(String resultText) {
+        ResultFragment newFragment = new ResultFragment();
+        Bundle args = new Bundle();
+        Log.d("TAG", "res: " + resultText);
+        args.putString(ResultFragment.RESULT_TEXT, resultText);
+        newFragment.setArguments(args);
 
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.fragment_container, newFragment);
+        transaction.addToBackStack(null);
+
+        transaction.commit();
     }
 
     private String getBestMatchingCurrency(double amount, String base) {
@@ -188,51 +195,6 @@ public class AmIAMillFragment extends Fragment {
             e.printStackTrace();
         }
         return total.toString();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
-        super.onActivityResult(requestCode, resultCode, data);
-        Session.getActiveSession().onActivityResult(getActivity(), requestCode, resultCode, data);
-        Log.d("TAG", "result");
-    }
-
-    private void setupShare() {
-        final android.support.v4.app.Fragment frag = this;
-        getActivity().findViewById(R.id.share_fb).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                // start Facebook Login
-                Session.openActiveSession(getActivity(), true, new Session.StatusCallback() {
-
-                    // callback when session changes state
-                    @Override
-                    public void call(Session session, SessionState state, Exception exception) {
-                        FacebookDialog.ShareDialogBuilder builder = new FacebookDialog.ShareDialogBuilder(getActivity())
-                                .setLink("https://developers.facebook.com/android").setName("some name").setFragment(frag);
-                        // share the app
-                        if (builder.canPresent()) {
-                            builder.build().present();
-                        }
-                    }
-                });
-            }
-        });
-
-        getActivity().findViewById(R.id.share_tw).setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-            }
-        });
-    }
-
-    private String getShareMessage() {
-        String text = ((TextView) getActivity().findViewById(R.id.result)).getText().toString();
-        return text;
     }
 
 }
