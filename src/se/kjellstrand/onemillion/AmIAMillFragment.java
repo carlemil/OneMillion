@@ -12,10 +12,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import com.facebook.Session;
+import com.facebook.SessionState;
+import com.facebook.widget.FacebookDialog;
 import com.google.gson.Gson;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,17 +36,17 @@ public class AmIAMillFragment extends Fragment {
 
     private static final double ONE_MILLION = 1000000f;
 
-    private Gson gson = new Gson();
+    private static final Gson gson = new Gson();
 
     private ExchangeRates exchangeRates;
+
+    private String baseCurrency;
 
     private final List<String> currencyList = new ArrayList<String>();
 
     private Map<String, String> currencies = new HashMap<String, String>();
 
     private Map<String, String> reverseMapCurrencies = new HashMap<String, String>();
-
-    private String baseCurrency;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,6 +58,8 @@ public class AmIAMillFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+
         String json = readFile(R.raw.exchange_rates);
         exchangeRates = gson.fromJson(json, ExchangeRates.class);
 
@@ -183,12 +190,35 @@ public class AmIAMillFragment extends Fragment {
         return total.toString();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        super.onActivityResult(requestCode, resultCode, data);
+        Session.getActiveSession().onActivityResult(getActivity(), requestCode, resultCode, data);
+        Log.d("TAG", "result");
+    }
+
     private void setupShare() {
+        final android.support.v4.app.Fragment frag = this;
         getActivity().findViewById(R.id.share_fb).setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
+                // start Facebook Login
+                Session.openActiveSession(getActivity(), true, new Session.StatusCallback() {
+
+                    // callback when session changes state
+                    @Override
+                    public void call(Session session, SessionState state, Exception exception) {
+                        FacebookDialog.ShareDialogBuilder builder = new FacebookDialog.ShareDialogBuilder(getActivity())
+                                .setLink("https://developers.facebook.com/android").setName("some name").setFragment(frag);
+                        // share the app
+                        if (builder.canPresent()) {
+                            builder.build().present();
+                        }
+                    }
+                });
             }
         });
 
