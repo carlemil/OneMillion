@@ -6,11 +6,14 @@ import java.util.List;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.widget.FacebookDialog;
+import com.google.android.gms.plus.PlusShare;
+
 import android.support.v4.app.Fragment;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,6 +103,18 @@ public class ResultFragment extends Fragment {
                     Toast.makeText(getActivity(), "You don't seem to have twitter installed on this device", Toast.LENGTH_SHORT)
                             .show();
                 }
+            }
+        });
+
+        getActivity().findViewById(R.id.share_gp).setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Launch the Google+ share dialog with attribution to your app.
+                Intent shareIntent = new PlusShare.Builder(getActivity()).setType("text/plain").setText(getShareMessage())
+                        .setContentUrl(Uri.parse(APP_PLAY_URL)).getIntent();
+
+                startActivity(shareIntent);
             }
         });
     }
