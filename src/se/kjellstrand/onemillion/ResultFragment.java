@@ -1,20 +1,27 @@
 
 package se.kjellstrand.onemillion;
 
+import java.util.List;
+
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.widget.FacebookDialog;
 import android.support.v4.app.Fragment;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ResultFragment extends Fragment {
+
+    private static final String APP_PLAY_URL = "https://developers.facebook.com/android";
 
     public static final String RESULT_TEXT = "RESULT_TEXT";
 
@@ -32,7 +39,6 @@ public class ResultFragment extends Fragment {
 
         Bundle bundle = getArguments();
         if (bundle != null) {
-            Log.d("TAG", "result " + resultText);
             resultText = bundle.getString(RESULT_TEXT);
             ((TextView) getActivity().findViewById(R.id.result)).setText(resultText);
         }
@@ -61,8 +67,7 @@ public class ResultFragment extends Fragment {
                     @Override
                     public void call(Session session, SessionState state, Exception exception) {
                         FacebookDialog.ShareDialogBuilder builder = new FacebookDialog.ShareDialogBuilder(getActivity())
-                                .setLink("https://developers.facebook.c)om/android").setDescription(resultText)
-                                .setName("some name").setFragment(frag);
+                                .setLink(APP_PLAY_URL).setDescription(resultText).setFragment(frag);
                         // share the app
                         if (builder.canPresent()) {
                             builder.build().present();
@@ -76,6 +81,25 @@ public class ResultFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
+                try {
+                    Intent tweetIntent = new Intent(Intent.ACTION_SEND);
+
+                    tweetIntent.putExtra(Intent.EXTRA_TEXT, getShareMessage() + "\n" + APP_PLAY_URL);
+                    PackageManager pm = getActivity().getPackageManager();
+                    List<ResolveInfo> lract = pm.queryIntentActivities(tweetIntent, PackageManager.MATCH_DEFAULT_ONLY);
+                    boolean resolved = false;
+                    for (ResolveInfo ri : lract) {
+                        if (ri.activityInfo.name.contains("twitter")) {
+                            tweetIntent.setClassName(ri.activityInfo.packageName, ri.activityInfo.name);
+                            resolved = true;
+                            break;
+                        }
+                    }
+                    startActivity(resolved ? tweetIntent : Intent.createChooser(tweetIntent, "Choose one"));
+                } catch (final ActivityNotFoundException e) {
+                    Toast.makeText(getActivity(), "You don't seem to have twitter installed on this device", Toast.LENGTH_SHORT)
+                            .show();
+                }
             }
         });
     }

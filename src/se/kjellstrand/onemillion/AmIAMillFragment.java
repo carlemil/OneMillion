@@ -17,7 +17,6 @@ import com.google.gson.Gson;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -155,7 +154,6 @@ public class AmIAMillFragment extends Fragment {
     private void showResultFragment(String resultText) {
         ResultFragment newFragment = new ResultFragment();
         Bundle args = new Bundle();
-        Log.d("TAG", "res: " + resultText);
         args.putString(ResultFragment.RESULT_TEXT, resultText);
         newFragment.setArguments(args);
 
