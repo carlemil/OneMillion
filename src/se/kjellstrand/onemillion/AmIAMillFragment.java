@@ -45,6 +45,23 @@ public class AmIAMillFragment extends Fragment {
     private Map<String, String> reverseMapCurrencies = new HashMap<String, String>();
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        String json = readFile(R.raw.exchange_rates);
+        exchangeRates = gson.fromJson(json, ExchangeRates.class);
+
+        json = readFile(R.raw.currencies);
+        currencies = gson.fromJson(json, currencies.getClass());
+
+        // Spinner Drop down elements
+        for (Entry<String, String> entry : currencies.entrySet()) {
+            reverseMapCurrencies.put(entry.getValue(), entry.getKey());
+            currencyList.add(entry.getValue());
+        }
+        Collections.sort(currencyList);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.amiamill, container, false);
@@ -53,13 +70,6 @@ public class AmIAMillFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        String json = readFile(R.raw.exchange_rates);
-        exchangeRates = gson.fromJson(json, ExchangeRates.class);
-
-        json = readFile(R.raw.currencies);
-        currencies = gson.fromJson(json, currencies.getClass());
-
         baseCurrency = Settings.getBaseCurrency(getActivity());
         if (baseCurrency == null) {
             baseCurrency = "United States Dollar";
@@ -82,13 +92,6 @@ public class AmIAMillFragment extends Fragment {
                 // Another interface callback
             }
         });
-
-        // Spinner Drop down elements
-        for (Entry<String, String> entry : currencies.entrySet()) {
-            reverseMapCurrencies.put(entry.getValue(), entry.getKey());
-            currencyList.add(entry.getValue());
-        }
-        Collections.sort(currencyList);
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,
@@ -131,7 +134,8 @@ public class AmIAMillFragment extends Fragment {
                         long sum = (long) getAmount(bestRate, amount, baseRate);
                         DecimalFormat formatter = new DecimalFormat("#,###");
                         String imAMillionare = getResources().getString(R.string.result_im_a_millionare);
-                        resultText = imAMillionare + "\n" + String.format(resultFormat, formatter.format(sum), bestMatchingCurrency);
+                        resultText = imAMillionare + "\n"
+                                + String.format(resultFormat, formatter.format(sum), bestMatchingCurrency);
                     } else {
                         resultText = getResources().getString(R.string.result_not_a_millionare);
                     }

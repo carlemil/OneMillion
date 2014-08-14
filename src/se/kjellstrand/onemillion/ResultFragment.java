@@ -31,7 +31,8 @@ public class ResultFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         Bundle bundle = getArguments();
-        if (resultText != null && bundle != null) {
+        if (bundle != null) {
+            Log.d("TAG", "result " + resultText);
             resultText = bundle.getString(RESULT_TEXT);
             ((TextView) getActivity().findViewById(R.id.result)).setText(resultText);
         }
@@ -44,7 +45,6 @@ public class ResultFragment extends Fragment {
         // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
         Session.getActiveSession().onActivityResult(getActivity(), requestCode, resultCode, data);
-        Log.d("TAG", "result " + resultText);
     }
 
     private void setupShare() {
