@@ -51,7 +51,6 @@ public class ResultFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
         super.onActivityResult(requestCode, resultCode, data);
         Session.getActiveSession().onActivityResult(getActivity(), requestCode, resultCode, data);
     }
