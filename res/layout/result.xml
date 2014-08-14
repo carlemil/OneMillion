@@ -18,9 +18,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:layout_marginTop="120dp"
         android:padding="16dp" >
 
         <ImageButton
@@ -30,22 +30,25 @@
             android:background="@drawable/com_facebook_button_blue"
             android:gravity="center"
             android:padding="8dp"
+            android:scaleType="fitCenter"
             android:src="@drawable/com_facebook_inverse_icon" />
 
-        <Button
+        <ImageButton
             android:id="@+id/share_tw"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@drawable/google_plus_button_red"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
             android:gravity="center"
             android:padding="8dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp" />
+            android:scaleType="fitCenter"
+            android:src="@drawable/twitter_logo_blue" />
 
         <Button
             android:id="@+id/share_gp"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:background="@drawable/google_plus_button_red"
             android:gravity="center"
             android:padding="8dp" />
     </LinearLayout>
