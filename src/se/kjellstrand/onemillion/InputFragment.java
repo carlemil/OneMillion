@@ -27,7 +27,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.AdapterView.OnItemSelectedListener;
 
-public class AmIAMillFragment extends Fragment {
+public class InputFragment extends Fragment {
 
     private static final double ONE_MILLION = 1000000f;
 
@@ -63,7 +63,7 @@ public class AmIAMillFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.amiamill, container, false);
+        return inflater.inflate(R.layout.input, container, false);
     }
 
     @Override

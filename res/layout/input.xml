@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/default_padding"
     tools:context=".MainActivity" >
 
     <RelativeLayout
@@ -19,7 +19,7 @@
             android:layout_alignParentLeft="true"
             android:layout_gravity="center"
             android:padding="8dp"
-            android:text="@string/i_have_"
+            android:text="@string/i_have"
             android:textSize="20sp" />
 
         <EditText
@@ -50,7 +50,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="8dp"
-        android:text="@string/find_out" />
+        android:text="@string/input_button_go_to_result" />
 
-        
 </LinearLayout>

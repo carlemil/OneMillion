@@ -16,7 +16,7 @@ public class MainActivity extends FragmentActivity {
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.fragment_container);
 
-        Fragment fragment = new AmIAMillFragment();
+        Fragment fragment = new InputFragment();
         getSupportFragmentManager().beginTransaction().add(layout.getId(), fragment , "someTag1").commit();
 
     }

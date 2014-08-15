@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/default_padding"
     tools:context=".MainActivity" >
 
     <TextView
@@ -18,10 +20,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="48dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="16dp" >
+        android:padding="@dimen/default_padding" >
 
         <ImageButton
             android:id="@+id/share_fb"
@@ -29,7 +31,6 @@
             android:layout_height="48dp"
             android:background="@drawable/com_facebook_button_blue"
             android:gravity="center"
-            android:padding="8dp"
             android:scaleType="fitCenter"
             android:src="@drawable/com_facebook_inverse_icon" />
 
@@ -40,7 +41,6 @@
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:gravity="center"
-            android:padding="8dp"
             android:scaleType="fitCenter"
             android:src="@drawable/twitter_logo_blue" />
 
@@ -49,8 +49,14 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:background="@drawable/google_plus_button_red"
-            android:gravity="center"
-            android:padding="8dp" />
+            android:gravity="center" />
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/tell_your_friends_"
+        android:textSize="9sp" />
 
 </LinearLayout>
