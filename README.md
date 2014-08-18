@@ -9,3 +9,22 @@ Short hands:
 http://openexchangerates.org/api/currencies.json?app_id=853caecbad844e2185de22eff5bd47f5
 
 http://en.wikipedia.org/wiki/Millionaire
+
+
+
+
+
+
+
+English - me
+Arabic - Amine
+Russian - Indira
+Spanish - Antonio
+German - Stefan
+Chinese - Chen chen
+Japanese - Ayumi
+Indonesian - Joel
+Hindi - ?
+Urdu - Majid
+French - Amine
+Korean - Björn Aspernäs
