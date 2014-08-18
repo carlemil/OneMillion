@@ -2,53 +2,48 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center_horizontal|top"
+    android:layout_marginTop="48dp"
+    android:gravity="center_horizontal|top"
     android:orientation="vertical"
     android:padding="@dimen/default_padding"
     tools:context=".MainActivity" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/i_have"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_gravity="center"
+        android:padding="8dp"
+        android:text="@string/i_have"
+        android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/i_have"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_gravity="center"
-            android:padding="8dp"
-            android:text="@string/i_have"
-            android:textSize="20sp" />
+    <EditText
+        android:id="@+id/amount"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:inputType="number"
+        android:minWidth="60dp"
+        android:padding="8dp"
+        android:text="0"
+        android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/spinner"
-            android:layout_toRightOf="@+id/i_have"
-            android:ems="10"
-            android:inputType="number"
-            android:minWidth="60dp"
-            android:padding="8dp"
-            android:text="0" >
-
-            <requestFocus />
-        </EditText>
-
-        <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:padding="8dp" />
-    </RelativeLayout>
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/ok_button"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="64dp"
+        android:layout_marginTop="32dp"
         android:padding="8dp"
         android:text="@string/input_button_go_to_result" />
 
