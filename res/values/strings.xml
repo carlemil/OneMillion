@@ -5,7 +5,7 @@
     <string name="input_button_go_to_result">Am I a millionaire?</string>
     <string name="result_im_a_millionare"><a href="http://source.android.com/">I\'m a MILLIONAIRE!</a></string>
     <string name="result_i_have">I have %1$s %2$s!</string>
-    <string name="result_not_a_millionare">:) I\'m not a millionaire.</string>
+    <string name="result_not_a_millionare">I\'m not a millionaire.</string>
     <string name="i_have">My total wealth is:</string>
     <string name="tell_your_friends_">Tell your friends!</string>
 
