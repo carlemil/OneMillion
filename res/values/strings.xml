@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_id">1491203974455778</string>
-    <string name="app_name">Everyone\'s a millionaire, almost.</string>
+    <string name="app_name">Who\'s a millionaire?</string>
     <string name="input_button_go_to_result">Am I a millionaire?</string>
     <string name="result_im_a_millionare"><a href="https://play.google.com/store/apps/details?id=se.kjellstrand.onemillion">I\'m a MILLIONAIRE!</a></string>
     <string name="result_i_have">I have %1$s %2$s!</string>
