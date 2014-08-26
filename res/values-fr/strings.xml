@@ -2,7 +2,7 @@
 
     <string name="app_name">Qui est un millionnaire?</string>
     <string name="input_button_go_to_result">Suis-je un millionnaire?</string>
-    <string name="result_im_a_millionare"><a href="https://play.google.com/store/apps/details?id=se.kjellstrand.onemillion">Je suis un MILLIONNAIRE!</a></string>
+    <string name="result_im_a_millionare">Je suis un MILLIONNAIRE!</string>
     <string name="result_i_have">J\'ai %1$s %2$s!</string>
     <string name="result_not_a_millionare">Je ne suis pas un millionnaire.</string>
     <string name="i_have">Entrez la somme d\'argent que vous avez:</string>

@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 public class ResultFragment extends Fragment {
 
-    private static final String APP_PLAY_URL = "https://developers.facebook.com/android";
+    private static final String APP_PLAY_URL = "https://play.google.com/store/apps/details?id=se.kjellstrand.onemillion";
 
     public static final String RESULT_TEXT = "RESULT_TEXT";
 
