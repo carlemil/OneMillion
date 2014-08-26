@@ -1,0 +1,27 @@
+<resources>
+
+    <string name="app_name">Кто является миллионером?</string>
+    <string name="input_button_go_to_result">Являюсь ли я миллионером?</string>
+    <string name="result_im_a_millionare"><a href="https://play.google.com/store/apps/details?id=se.kjellstrand.onemillion">Я миллионер!</a></string>
+    <string name="result_i_have">У меня есть %1$s %2$s!</string>
+    <string name="result_not_a_millionare">Я не миллионер.</string>
+    <string name="i_have">Введите сколько денег у вас есть:</string>
+    <string name="tell_your_friends_">Расскажите своим друзьям!</string>
+<!-- 
+
+"Who's a millionaire?" "Кто является миллионером?"
+ 
+"Am I a millionaire?" "Являюсь ли я миллионером?"
+ 
+"I'm a MILLIONAIRE!" "Я миллионер!"
+ 
+"I have 1$!" "У меня есть 1 $!"
+ 
+"I'm not a millionaire." "Я не миллионер."
+ 
+"Input how much money you have" "Введите сколько денег у вас есть "
+ 
+"Tell your friends!" "Расскажите своим друзьям!"
+ 
+ -->
+</resources>
