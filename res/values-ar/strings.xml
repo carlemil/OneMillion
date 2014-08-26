@@ -3,10 +3,11 @@
     <string name="app_name">من هو مليونيرا؟</string>
     <string name="input_button_go_to_result">أنا مليونيرا؟</string>
     <string name="result_im_a_millionare"><a href="https://play.google.com/store/apps/details?id=se.kjellstrand.onemillion">أنا مليونيرا!</a></string>
-    <string name="result_i_have">!%2$s %1$s لدي</string>
+    <string name="result_i_have">%2$s %1$s لدي</string>
     <string name="result_not_a_millionare">أنا لست مليونيرا</string>
     <string name="i_have">يرجى إدخال مقدار المال الذي عندك:</string>
     <string name="tell_your_friends_">أخبر أصدقاءك!</string>
+    
 <!-- 
 من هو مليونيرا؟
 أنا مليونيرا؟

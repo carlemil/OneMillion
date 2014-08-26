@@ -131,10 +131,9 @@ public class InputFragment extends Fragment {
                         double baseRate = exchangeRates.rates.get(reverseMapCurrencies.get(baseCurrency));
                         double bestRate = exchangeRates.rates.get(bestMatchingCurrencyKey);
                         long sum = (long) getAmount(bestRate, amount, baseRate);
-                        DecimalFormat formatter = new DecimalFormat("#,###");
                         String imAMillionare = getResources().getString(R.string.result_im_a_millionare);
                         resultText = imAMillionare + "\n"
-                                + String.format(resultFormat, formatter.format(sum), bestMatchingCurrency);
+                                + String.format(resultFormat, new DecimalFormat().format(sum), bestMatchingCurrency);
                     } else {
                         resultText = getResources().getString(R.string.result_not_a_millionare);
                     }

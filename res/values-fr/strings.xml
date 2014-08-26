@@ -7,7 +7,8 @@
     <string name="result_not_a_millionare">Je ne suis pas un millionnaire.</string>
     <string name="i_have">Entrez la somme d\'argent que vous avez:</string>
     <string name="tell_your_friends_">Informez vos amis!</string>
-<!-- 
+
+    <!--
 Qui est un millionnaire?
 Suis-je un millionnaire?
 Je suis un MILLIONNAIRE!
@@ -15,5 +16,6 @@ J'ai 1$!
 Je ne suis pas un millionnaire.
 Entrez la somme d'argent que vous avez
 Informez vos amis!
- -->
+    -->
+
 </resources>
