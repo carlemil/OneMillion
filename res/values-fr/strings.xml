@@ -1,11 +1,19 @@
 <resources>
 
-    <string name="app_name">Who\'s a millionaire?</string>
-    <string name="input_button_go_to_result">Am I a millionaire?</string>
-    <string name="result_im_a_millionare"><a href="https://play.google.com/store/apps/details?id=se.kjellstrand.onemillion">I\'m a MILLIONAIRE!</a></string>
-    <string name="result_i_have">I have %1$s %2$s!</string>
-    <string name="result_not_a_millionare">I\'m not a millionaire.</string>
-    <string name="i_have">Input how much money you have:</string>
-    <string name="tell_your_friends_">Tell your friends!</string>
-
+    <string name="app_name">Qui est un millionnaire?</string>
+    <string name="input_button_go_to_result">Suis-je un millionnaire?</string>
+    <string name="result_im_a_millionare"><a href="https://play.google.com/store/apps/details?id=se.kjellstrand.onemillion">Je suis un MILLIONNAIRE!</a></string>
+    <string name="result_i_have">J\'ai %1$s %2$s!</string>
+    <string name="result_not_a_millionare">Je ne suis pas un millionnaire.</string>
+    <string name="i_have">Entrez la somme d\'argent que vous avez:</string>
+    <string name="tell_your_friends_">Informez vos amis!</string>
+<!-- 
+Qui est un millionnaire?
+Suis-je un millionnaire?
+Je suis un MILLIONNAIRE!
+J'ai 1$!
+Je ne suis pas un millionnaire.
+Entrez la somme d'argent que vous avez
+Informez vos amis!
+ -->
 </resources>
