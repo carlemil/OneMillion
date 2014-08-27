@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">Кто является миллионером?</string>
+    <string name="app_name">Являюсь ли я миллионером?</string>
     <string name="input_button_go_to_result">Являюсь ли я миллионером?</string>
     <string name="result_im_a_millionare">Я миллионер!</string>
     <string name="result_i_have">У меня есть %1$s %2$s!</string>

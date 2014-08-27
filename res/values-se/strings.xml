@@ -1,7 +1,7 @@
 <resources>
 
-    <string name="app_name">Vem är millijonär?</string>
-    <string name="input_button_go_to_result">Är jag en millijonär?</string>
+    <string name="app_name">Är jag millijonär?</string>
+    <string name="input_button_go_to_result">Är jag millijonär?</string>
     <string name="result_im_a_millionare">Jag är MILLIJONÄR!</string>
     <string name="result_i_have">Jag har %1$s %2$s!</string>
     <string name="result_not_a_millionare">Jag är inte millijonär.</string>

@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">¿Quién es millonario?</string>
+    <string name="app_name">¿Soy millonario?</string>
     <string name="input_button_go_to_result">¿Soy millonario?</string>
     <string name="result_im_a_millionare">¡Soy millonario!</string>
     <string name="result_i_have">¡Tengo %1$s %2$s!</string>
