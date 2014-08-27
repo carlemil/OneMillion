@@ -69,7 +69,8 @@ public class ResultFragment extends Fragment {
                     @Override
                     public void call(Session session, SessionState state, Exception exception) {
                         FacebookDialog.ShareDialogBuilder builder = new FacebookDialog.ShareDialogBuilder(getActivity())
-                                .setLink(APP_PLAY_URL).setDescription(resultText).setFragment(frag);
+                                .setLink(APP_PLAY_URL).setName(getResources().getString(R.string.app_name))
+                                .setDescription(resultText).setFragment(frag);
                         // share the app
                         if (builder.canPresent()) {
                             builder.build().present();
