@@ -30,27 +30,26 @@
             android:id="@+id/share_fb"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@drawable/com_facebook_button_blue"
+            android:src="@drawable/com_facebook_inverse_icon"
             android:gravity="center"
-            android:scaleType="fitCenter"
-            android:src="@drawable/com_facebook_inverse_icon" />
+            android:scaleType="fitXY"
+            android:background="@drawable/com_facebook_button_blue" />
 
-        <ImageButton
+        <Button
             android:id="@+id/share_tw"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:gravity="center"
-            android:scaleType="fitCenter"
-            android:src="@drawable/twitter_logo_blue" />
+            android:background="@drawable/twitter_logo_blue" />
 
         <Button
             android:id="@+id/share_gp"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:background="@drawable/google_plus_button_red"
-            android:gravity="center" />
+            android:gravity="center"
+            android:background="@drawable/google_plus_button_red" />
     </LinearLayout>
 
     <TextView
