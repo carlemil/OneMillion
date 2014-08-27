@@ -85,7 +85,7 @@ public class ResultFragment extends Fragment {
             public void onClick(View v) {
                 try {
                     Intent tweetIntent = new Intent(Intent.ACTION_SEND);
-
+                    tweetIntent.setType("*/*");
                     tweetIntent.putExtra(Intent.EXTRA_TEXT, getShareMessage() + "\n" + APP_PLAY_URL);
                     PackageManager pm = getActivity().getPackageManager();
                     List<ResolveInfo> lract = pm.queryIntentActivities(tweetIntent, PackageManager.MATCH_DEFAULT_ONLY);
